@@ -1,0 +1,97 @@
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Form, Button, Table, Badge, Alert } from 'react-bootstrap';
+
+const VolunteerPage = () => {
+  const [events, setEvents] = useState([]);
+  const [formData, setFormData] = useState({ name: '', event_name: '', availability: '' });
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    // Mock data
+    setEvents([
+      { _id: '1', name: 'Student Support', event_name: 'Campus Orientation', availability: 'Full Day', createdAt: new Date() }
+    ]);
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSuccess('Registration successful! Thank you for volunteering.');
+    setFormData({ name: '', event_name: '', availability: '' });
+  };
+
+  return (
+    <Container className="mt-4">
+      <h3 className="fw-bold mb-4" style={{ color: '#66b032' }}>Volunteer Registration</h3>
+      <Row>
+        <Col md={5}>
+          <Card className="shadow-sm border-0 mb-4">
+            <Card.Body>
+              <h5 className="mb-3">Sign Up as Volunteer</h5>
+              {success && <Alert variant="success">{success}</Alert>}
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    value={formData.name} 
+                    onChange={(e) => setFormData({...formData, name: e.target.value})} 
+                    required 
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Event Name</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    value={formData.event_name} 
+                    onChange={(e) => setFormData({...formData, event_name: e.target.value})} 
+                    required 
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Availability</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    placeholder="e.g. Sat-Sun, 9am-5pm"
+                    value={formData.availability} 
+                    onChange={(e) => setFormData({...formData, availability: e.target.value})} 
+                    required 
+                  />
+                </Form.Group>
+                <Button type="submit" className="border-0 w-100" style={{ backgroundColor: '#66b032' }}>
+                  Register Now
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={7}>
+          <Card className="shadow-sm border-0">
+            <Card.Body>
+              <h5 className="mb-3">Our Volunteers</h5>
+              <Table responsive hover>
+                <thead>
+                  <tr>
+                    <th>Volunteer</th>
+                    <th>Event</th>
+                    <th>Availability</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {events.map(event => (
+                    <tr key={event._id}>
+                      <td>{event.name}</td>
+                      <td>{event.event_name}</td>
+                      <td>{event.availability}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
+
+export default VolunteerPage;

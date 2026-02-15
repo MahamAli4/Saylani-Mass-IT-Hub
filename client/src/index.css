@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-blue: #0057a8;
+  --primary-green: #66b032;
+  --bg-light: #f4f7f6;
+  --sidebar-width: 260px;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-light);
+  color: #333;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.transition-hover {
+  transition: var(--transition-smooth);
+}
+
+.transition-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+.card {
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-smooth);
+}
+
+.btn {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  transition: var(--transition-smooth);
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+}
+
+.sidebar {
+  z-index: 1000;
+}
+
+/* Responsive Helper Classes */
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-wrapper,
+  .topbar,
+  .content-area {
+    margin-left: 0 !important;
+  }
+}
+
+.content-area {
+  transition: var(--transition-smooth);
+}
