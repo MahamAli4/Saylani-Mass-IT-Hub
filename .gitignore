@@ -1,2 +1,10 @@
+node_modules/
+dist/
+.env
+.DS_Store
+*.log
 /PROJECT_DETAILS.md
 /PROJECT_PROGRESS.md
+client/node_modules/
+server/node_modules/
+client/dist/
